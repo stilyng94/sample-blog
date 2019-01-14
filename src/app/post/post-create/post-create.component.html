@@ -1,0 +1,56 @@
+<section id="newPost">
+    <div class="bwm-form">
+      <div class="row">
+        <div class="col-md-5">
+          <h1 class="page-header">Create Post</h1>
+          <!-- <div class="alert alert-danger" *ngIf="createRentalError && showNotice" role="alert">
+            <h4 class="alert-heading">{{notifyTitle}}</h4>
+            <p>{{notifyMessage}}</p>
+            <p class="mb-0"></p>
+          </div> -->
+          <form #createPostForm="ngForm" (ngSubmit)="onCreatePost(createPostForm)">
+
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" name="title" #titleInput="ngModel" [(ngModel)]="newPost.title"
+                [ngClass]="{'is-invalid': titleInput.invalid && (titleInput.dirty || titleInput.touched)}" required>
+              <div *ngIf="titleInput.invalid" class="invalid-feedback">
+                <strong *ngIf="titleInput?.errors.required">Title is required</strong>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <app-image-upload (imageUploaded)="handleImageUpload($event)"
+                (imageError)="handleImageError()">
+              </app-image-upload>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea rows="5" type="text" class="form-control" id="description" name="description" #descriptionInput="ngModel"
+                [(ngModel)]="newPost.content" [ngClass]="{'is-invalid': descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)}"
+                required>
+              </textarea>
+              <div *ngIf="descriptionInput.invalid" class="invalid-feedback">
+                <strong *ngIf="descriptionInput?.errors.required">Description is required</strong>
+              </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-bwm" [disabled]="createPostForm.invalid || imageUploadError">Submit</button>
+            <div class="alert alert-danger" role="alert" *ngIf="imageUploadError">
+              <strong>An image was expected</strong>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6 ml-auto mt-3">
+          <div class="card bg-dark text-dark">
+            <img class="card-img" src="assets/images/rental1.jpeg" alt="Card image">
+            <div class="card-img-overlay">
+              <h4 class="catchphrase">Note. People are atrracted to Post's with catchy title</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

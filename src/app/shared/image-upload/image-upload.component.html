@@ -1,0 +1,17 @@
+<button type="button" (click)="imageInput.click()" class="btn btn-bwm">
+  Pick Image
+</button>
+<input #imageInput type="file" name="image" id="imageInput" [accept]="['image/png', 'image/jpeg',' image/jpg']"
+  (change)="processFile(imageInput)">
+<div class="image-preview" *ngIf="selectedFile || existedImage">
+  <img
+
+   [src]="existedImage? existedImage : selectedFile"
+    alt="">
+  <div  *ngIf="status && status === 'OK'" class="alert alert-success">
+    Image Success
+  </div>
+  <div *ngIf="status && status === 'FAIL'" class="alert alert-danger">
+    Upload Failed
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<form #commentForm="ngForm" (ngSubmit)="onCreateComment()">
+  <div class="form-group">
+
+    <textarea class="form-control  mb-2" name="newComment" id="newComment" rows="3" [(ngModel)]="newComment.content"></textarea>
+    <p class="form-text text-muted">
+      Comment should be minimum of 1 character and maximun of 250 characters
+    </p>
+
+    <button type="submit" class="btn btn-success mt-1 mb-2">Add</button>
+    <button type="reset" class="btn btn-danger mt-1 mb-2" (click)="onCancelComment(commentForm)">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,5 @@
+{
+  "env": {
+      "JWT_KEY": "secuirity-breach-not my home-2018"
+  }
+}

@@ -1,0 +1,9 @@
+<div class="card mb-3 mt-3">
+  <img class="card-img-top pt-4" [src]="post.imagePath" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{post.title}}</h4>
+    <a [routerLink]="['/posts', post._id, 'details']" class="btn btn-xs btn-primary d-block">Details</a>
+    <p class="card-text d-inline-flex mr-5 ml-auto"><small class="text-muted">{{post.creatorName}}</small></p>
+    <p class="card-text d-inline-flex ml-5 mr-auto"><small class="text-muted">{{post.createdAt| date}}</small></p>
+  </div>
+</div>

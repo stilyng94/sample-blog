@@ -1,0 +1,7 @@
+input[type="file"] {
+  visibility: hidden;
+}
+
+img{
+  width: 365px !important;
+}

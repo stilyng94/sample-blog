@@ -1,0 +1,47 @@
+<section id="register">
+    <div class="bwm-form">
+      <div class="row">
+        <div class="col-md-5">
+          <h1 class="page-header">Login</h1>
+
+          <!-- <div class="alert alert-danger" *ngIf="registerError && showNotice" role="alert">
+            <h4 class="alert-heading">{{notifyTitle}}</h4>
+            <p>{{notifyMessage}}</p>
+            <p class="mb-0"></p>
+          </div> -->
+
+          <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" #emailInput="ngModel" [(ngModel)]="loginData.email"
+                required [ngClass]="{'is-invalid': emailInput.invalid && (emailInput.dirty || emailInput.touched)}" email>
+              <div *ngIf="emailInput.invalid" class="invalid-feedback">
+                <strong *ngIf="emailInput?.errors.required">Email is required</strong>
+                <strong *ngIf="emailInput?.errors.email">Please enter a valid email address</strong>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" #passwordInput="ngModel"
+                [(ngModel)]="loginData.password" required [ngClass]="{'is-invalid': passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)}">
+              <div *ngIf="passwordInput.invalid" class="invalid-feedback">
+                <strong *ngIf="passwordInput?.errors.required">Password is required</strong>
+              </div>
+            </div>
+
+            <button [disabled]="loginForm.invalid && (loginForm.touched || loginForm.pristine)" type="submit" class="btn btn-primary mb-3">Submit</button>
+          </form>
+        </div>
+        <div class="col-md-6 ml-auto mt-3">
+            <div class="card bg-dark text-dark">
+              <img class="card-img" src="assets/images/rental4.jpeg" alt="Card image">
+              <div class="card-img-overlay">
+                <h4 class="card-title">As our member you have access to meet some graet minds.</h4>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>

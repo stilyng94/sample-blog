@@ -1,0 +1,13 @@
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+p.mt-3 {
+  max-width: 100%;
+  max-height: 100%
+}
+
+hr  {
+  border-top: 1px none rgba(0,0,0,.1) !important;
+}

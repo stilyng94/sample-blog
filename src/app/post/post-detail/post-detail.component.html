@@ -1,0 +1,43 @@
+<section>
+
+  <ng-container *ngIf="post && !loadingError">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="mb-4 mt-2">{{post.title}}</h1>
+        <p class="card-text d-inline-flex mr-5 ml-auto"><small class="text-muted">{{post.creatorName}}</small></p>
+        <p class="card-text d-inline-flex ml-5 mr-auto"><small class="text-muted">{{post.createdAt | date}}</small></p>
+        <div class="text-center">
+          <img [src]="post.imagePath" class="rounded" alt="">
+        </div>
+        <p class="mt-4">{{post.content}}</p>
+        <br>
+        <hr>
+        <p class="form-text text-muted clickable" (click)="readyToAddComment = true" [hidden]="readyToAddComment || !isAuthenticated">
+          add comment...
+        </p>
+        <ng-container *ngIf="readyToAddComment">
+          <app-comment-create [postId]="post._id" (commentAdded)="latestComment($event)" (toggleReadyToAddComment)="NotAddComment($event)"></app-comment-create>
+        </ng-container>
+      </div>
+
+      <div class="col-md-5 ml-auto mt-1">
+        <button class="btn btn-xs btn-info my-3" (click)="onViewComments(post._id)" [hidden]="this.commentsLoadingError || comments.length > 0">View
+          Comments</button>
+        <ng-container *ngIf="comments && comments.length > 0">
+
+          <div class="card my-2" *ngFor="let comment of comments; let i = index">
+            <app-comment-list [comment]="comment" [commentIndex]="i" (commentDeleted)="onDeleteComment($event)"
+              [commentCreator]="comment.creator">
+            </app-comment-list>
+          </div>
+
+        </ng-container>
+        <p class="alert alert-danger center my-3" *ngIf="comments.length === 0 && commentsLoadingError">Comments do Not
+          Exisit!</p>
+      </div>
+    </div>
+  </ng-container>
+
+  <p class="alert alert-danger center my-3" *ngIf="!post && loadingError">Post does Not Exisit!</p>
+
+</section>
